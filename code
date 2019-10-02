@@ -1,0 +1,95 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Collections;
+
+namespace Calc
+{
+    class Program
+    {
+        
+        double a, b, c;
+        public void wczytaj()
+        {
+            Console.WriteLine("*** KALKULATOR ***\n\n");
+            Console.Write("Wybierz tryb wczytywania danych (l-losowe, r-recznie): ");
+            try
+            {
+                char tryb;
+                tryb = char.Parse(Console.ReadLine());
+                switch(tryb)
+                {
+                    case 'l':
+                        Random r = new Random();
+                        
+                        Console.Write("Losowanie liczb od 0..99: ");
+                        a = Math.Round(100 * (r.NextDouble()));
+                        b = Math.Round(100 * (r.NextDouble()));
+                        Console.Write(a + ", " + b + "\n");
+                        break;
+                    case 'r':
+                        Console.Write("Podaj a: ");
+                        a = double.Parse(Console.ReadLine());
+                        Console.Write("Podaj b: ");
+                        b = double.Parse(Console.ReadLine());
+                        break;
+                    default:
+                        Console.WriteLine("\n# Nie ma takiego wyboru!\n\n\n");
+                        break;
+                }
+            }
+            catch
+            {
+                Console.WriteLine("\n# Niepoprawny wybor!\n");
+                Environment.Exit(0);
+            }
+            
+        }
+
+        public void obliczenia()
+        {
+            
+                char wybor = 'a';
+                Console.WriteLine("Wybierz rodzaj dzialania");
+                Console.WriteLine("1 - dod, 2 - odej, 3 - mnoz, 4 - dziel");
+                wybor = char.Parse(Console.ReadLine());
+
+                switch (wybor)
+                {
+                    case '1':
+                        c = a + b;
+                        break;
+                    case '2':
+                        c = a - b;
+                        break;
+                    case '3':
+                        c = a * b;
+                        break;
+                    case '4':
+                        c = a / b;
+                        break;
+                    default:
+                        Console.WriteLine("\n# niepoprawny wybor dzialania!\n\n");
+                        break;
+                }
+            
+        }
+
+        public void wynik()
+        {
+            Console.WriteLine("Wynik wynosi: {0}", c);
+        }
+
+        static void Main(string[] args)
+        {
+            Program kalkulator = new Program();
+            kalkulator.wczytaj();
+            kalkulator.obliczenia();
+            kalkulator.wynik();
+
+            Console.WriteLine("\n\n\n");
+        }
+    }
+}
